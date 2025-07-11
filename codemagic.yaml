@@ -1,0 +1,18 @@
+workflows:
+  android-workflow:
+    name: BharatGPT Android Build
+    max_build_duration: 15
+    environment:
+      flutter: stable
+      android_signing:
+        keystore_reference: YOUR_KEYSTORE_REFERENCE
+        keystore_password: ENCODED_PASSWORD
+        key_alias: YOUR_KEY_ALIAS
+        key_password: ENCODED_KEY_PASSWORD
+    scripts:
+      - name: Get dependencies
+        script: flutter pub get
+      - name: Build APK
+        script: flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
